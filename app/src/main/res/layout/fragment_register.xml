@@ -76,7 +76,7 @@
 
         <!--Password-->
         <LinearLayout
-            android:id="@+id/edtPassword"
+
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -91,6 +91,7 @@
 
             <!--TextField-->
             <EditText
+                android:id="@+id/edtPassword"
                 android:inputType="textPassword"
                 android:hint="Password "
                 android:layout_width="match_parent"
