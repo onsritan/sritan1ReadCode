@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.EditText;
 import sritan1.th.ac.ms.sritan1readcode.MainActivity;
 import sritan1.th.ac.ms.sritan1readcode.R;
 import sritan1.th.ac.ms.sritan1readcode.utility.MyAlert;
+import sritan1.th.ac.ms.sritan1readcode.utility.MyConstant;
+import sritan1.th.ac.ms.sritan1readcode.utility.PostUserToServer;
 
 /**
  * Created by asus on 3/21/2018.
@@ -63,6 +66,34 @@ private  String nameString, userString, passwordString;
                     myAlert.myDialog("Have Space", "Please Fill All Blank");
                 } else {
 //                    No Space
+                    try {
+
+                        MyConstant myConstant = new MyConstant();
+                        PostUserToServer postUserToServer = new PostUserToServer(getActivity());
+                        postUserToServer.execute(nameString, userString, passwordString,
+                                myConstant.getUrlPostUserString());
+                        String result = postUserToServer.get();
+                        Log.d("22MarchV1", "Result ==>" + result);
+
+                        if (Boolean.parseBoolean(result)) {
+                            getActivity().getSupportFragmentManager().popBackStack();
+                            MyAlert myAlert = new MyAlert(getActivity());
+                            myAlert.myDialog("Ok Post User",
+                                    "Finsh");
+                            
+                        } else {
+
+                            MyAlert myAlert = new MyAlert(getActivity());
+                            myAlert.myDialog("Cannot Post User",
+                                    "Please Try Again");
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
                 }
 
 
