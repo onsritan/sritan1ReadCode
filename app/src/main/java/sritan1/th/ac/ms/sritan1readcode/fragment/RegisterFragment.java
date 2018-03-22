@@ -77,15 +77,11 @@ private  String nameString, userString, passwordString;
 
                         if (Boolean.parseBoolean(result)) {
                             getActivity().getSupportFragmentManager().popBackStack();
-                            MyAlert myAlert = new MyAlert(getActivity());
-                            myAlert.myDialog("Ok Post User",
-                                    "Finsh");
-                            
                         } else {
 
                             MyAlert myAlert = new MyAlert(getActivity());
-                            myAlert.myDialog("Cannot Post User",
-                                    "Please Try Again");
+                            myAlert.myDialog("cannot user",
+                            "Please try again");
                         }
 
 
